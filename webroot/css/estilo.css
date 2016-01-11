@@ -1,0 +1,59 @@
+#top {
+	height: auto;
+}
+
+.responsive {
+	max-width: 100%;
+	height: auto;
+}
+.button-success,
+.button-error,
+.button-warning,
+.button-secondary,
+.button-success:hover,
+.button-error:hover,
+.button-warning:hover,
+.button-secondary:hover {
+    color: white;
+    border-radius: 4px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.button-success {
+    background: rgb(28, 184, 65); /* this is a green */
+}
+
+.button-error {
+    background: rgb(202, 60, 60); /* this is a maroon */
+}
+
+.button-warning {
+    background: rgb(223, 117, 20); /* this is an orange */
+}
+
+.button-secondary {
+    background: rgb(66, 184, 221); /* this is a light blue */
+}
+
+.text-right {
+	text-align: right;
+}
+
+hr {
+	margin: 10px 0;
+	border: 1px solid #eee;
+}
+
+.message {
+    background: #1f8dd6;
+    padding: 0.3em 1em;
+    border-radius: 0.1em;
+    color: #fff;
+}
+input, .message {
+    margin-bottom: 1em;
+}
+.pure-u-12-24 {
+    padding: 1em;
+    box-sizing: border-box;
+}
