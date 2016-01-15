@@ -25,14 +25,10 @@ class TiposTable extends Table
         parent::initialize($config);
 
         $this->table('tipos');
-        $this->displayField('descricao');
+        $this->displayField('id');
         $this->primaryKey('id');
 
         $this->addBehavior('Timestamp');
-        
-        $this->hasMany('Movimentacoes', [
-            'foreignKey' => 'tipos_id'
-        ]);
 
     }
 
@@ -53,13 +49,9 @@ class TiposTable extends Table
             ->notEmpty('descricao')
             ->add('descricao', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
 
-
-        
-         $validator
-            ->add('tipo', 'inList', [
-                'rule' => ['inList', ['Entrada','Saída']],
-                'message' => 'Please enter a valid role'
-            ]);
+        $validator
+            ->requirePresence('tipo', 'create')
+            ->notEmpty('tipo');
 
         return $validator;
     }
