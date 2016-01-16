@@ -28,3 +28,4 @@ configuration relevant for your application.
 # bin/cake bake all users --theme TwitterBootstrap --prefix admin
 
 [https://github.com/CakePHPBrasil/TwitterBootstrap](https://github.com/CakePHPBrasil/TwitterBootstrap)
+
