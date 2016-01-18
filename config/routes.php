@@ -17,8 +17,10 @@ Router::scope('/', function ($routes) {
 });
 
 Router::prefix('admin', function ($routes){
-    $routes->connect('/', ['controller' => 'Users', 'action' => 'index']);
-    $routes->fallbacks('DashedRoute');
+    $routes->connect('/', ['controller' => 'Users', 'action' => 'index']);    
+    $routes->extensions('pdf');
+    $routes->connect('/view/*', ['controller' => 'Users', 'action' => 'view']);
+    $routes->fallbacks('InflectedRoute');
 });
 
 Plugin::routes();

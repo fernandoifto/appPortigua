@@ -17,6 +17,14 @@ class UsersController extends AppController
      *
      * @return void
      */
+    
+    public function initialize() {
+        parent::initialize();
+        $this->loadComponent('RequestHandler');
+        $this->_validViewOptions[] = 'pdfConfig';
+    }
+    
+    public $components = array('RequestHandler');
 
     public function index() {
         $search = null;
@@ -42,11 +50,15 @@ class UsersController extends AppController
      * @return void
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
-    public function view($id = null)
-    {
+    
+    public function view($id = null){
         $user = $this->Users->get($id, [
             'contain' => ['Movimentacoes']
         ]);
+        $this->pdfConfig = [
+            'orientation' => 'portrait',
+            'filename' => 'User_' . $id . '.pdf'
+        ];
         $this->set('user', $user);
         $this->set('_serialize', ['user']);
     }
