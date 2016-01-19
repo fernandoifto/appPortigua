@@ -16,30 +16,28 @@ class MovimentacoesController extends AppController
      *
      * @return void
     */
-
+    
     public function index() {
         $search = null;
-        $this->paginate = [
-            'contain' => ['Tipos', 'Users']
-        ];
         
         if(isset($this->request->query['search'])){
                 $search = $this->request->query['search'];
                 $optionSearch = $this->request->query['optionSearch'];
                 
-                $movimentacoes = $this->Movimentacoes
-                        ->find('all', ['contain' => ['Tipos', 'Users']])
+                $movimentacoes = $this->Movimentacoes->find('all')->contain(['Tipos', 'Users'])
                         ->innerJoin('users', 'users.id = Movimentacoes.users_id')
                         ->innerJoin('tipos', 'tipos.id = Movimentacoes.tipos_id')
                         ->where(['CAST('.$optionSearch.' AS CHAR ) LIKE ' => '%'.$search.'%']);
         }  else {
-            $movimentacoes = $this->Movimentacoes;
+            $movimentacoes = $this->Movimentacoes->find('all')->contain(['Tipos', 'Users'])
+                ->innerJoin('users', 'users.id = Movimentacoes.users_id')
+                ->innerJoin('tipos', 'tipos.id = Movimentacoes.tipos_id');
         }
-
+        
         $this->set('movimentacoes', $this->paginate($movimentacoes));
         $this->set('_serialize', ['movimentacoes']);
     }
-
+    
     /**
      * View method
      *

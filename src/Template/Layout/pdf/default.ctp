@@ -5,7 +5,7 @@
     <title>
         <?= $this->fetch('title') ?>
     </title>
-    <?= $this->Html->css('bootstrap.min.css', ['fullBase' => true]) ?>
+    <?= $this->Html->css('bootstrap.min', ['fullBase' => true]) ?>
 </head>
 <body>
     <div id="container">

@@ -38,11 +38,16 @@ class AppController extends Controller
      *
      * @return void
      */
+    public $paginate = [
+        'limit' => 10
+    ];
+    
     public function initialize()
     {
         parent::initialize();
 
         $this->loadComponent('RequestHandler');
+        $this->loadComponent('Paginator');
         $this->loadComponent('Flash');
         $this->loadComponent('Auth', [
            'authenticate'=>[

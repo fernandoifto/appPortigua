@@ -25,10 +25,14 @@ class TiposTable extends Table
         parent::initialize($config);
 
         $this->table('tipos');
-        $this->displayField('id');
+        $this->displayField('descricao');
         $this->primaryKey('id');
 
         $this->addBehavior('Timestamp');
+        
+        $this->hasMany('Movimentacoes', [
+            'foreignKey' => 'tipos_id'
+        ]);
 
     }
 

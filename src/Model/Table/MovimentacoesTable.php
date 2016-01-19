@@ -15,7 +15,6 @@ use Cake\Validation\Validator;
  */
 class MovimentacoesTable extends Table
 {
-
     /**
      * Initialize method
      *
@@ -34,12 +33,32 @@ class MovimentacoesTable extends Table
 
         $this->belongsTo('Tipos', [
             'foreignKey' => 'tipos_id',
+            'propertyName' => 'tipo',
+            'joinType' => 'INNER'
+        ]);
+        $this->belongsTo('Users', [
+            'foreignKey' => 'users_id',
+            'propertyName' => 'user',
+            'joinType' => 'INNER'
+        ]);
+        
+        /*
+         * 
+         $this->belongsTo('Authors', [
+            'className' => 'Publishing.Authors',
+            'foreignKey' => 'authorid',
+            'propertyName' => 'person'
+        ]);
+         * 
+        $this->belongsTo('Tipos', [
+            'foreignKey' => 'tipos_id',
             'joinType' => 'INNER'
         ]);
         $this->belongsTo('Users', [
             'foreignKey' => 'users_id',
             'joinType' => 'INNER'
         ]);
+         */
     }
     
 

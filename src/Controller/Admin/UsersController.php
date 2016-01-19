@@ -18,13 +18,13 @@ class UsersController extends AppController
      * @return void
      */
     
+    
+    
     public function initialize() {
         parent::initialize();
         $this->loadComponent('RequestHandler');
         $this->_validViewOptions[] = 'pdfConfig';
     }
-    
-    public $components = array('RequestHandler');
 
     public function index() {
         $search = null;

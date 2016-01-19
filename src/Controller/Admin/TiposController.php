@@ -29,7 +29,6 @@ class TiposController extends AppController
                 ]]
             ];
         }
-        
         $this->set('tipos', $this->paginate($this->Tipos));
         $this->set('_serialize', ['tipos']);
     }
