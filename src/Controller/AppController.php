@@ -61,6 +61,7 @@ class AppController extends Controller
                 'action' => 'index'
             ]
         ]);
+        $this->_validViewOptions[] = 'pdfConfig';
     }
     
     public function beforeFilter(Event $event){

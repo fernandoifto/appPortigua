@@ -33,28 +33,6 @@ class TiposController extends AppController
         $this->set('_serialize', ['tipos']);
     }
 
-    public function search(){
-        if($this->request->is('post')){
-            $search = null;
-            if(isset($this->request->data['search'])){
-                $search = $this->request->data['search'];
-                $optionSearch = $this->request->data['optionSearch'];
-            }
-            $tipos = $this->Tipos->find('all',
-                    [
-                        'conditions' => [
-                            'Tipos.'.$optionSearch.' LIKE '=> '%'.$search.'%'
-                        ]
-                    ]
-            );
-            
-            $this->set('tipos', $this->paginate($tipos));
-            $this->render('index');
-        }  else {
-            throw new NotFoundException("Pagina não encontrada");
-        }
-    }
-
     /**
      * View method
      *

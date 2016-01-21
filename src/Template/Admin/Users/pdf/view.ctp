@@ -1,27 +1,26 @@
 <div class="users view col-lg-12 col-md-12">
     <h3><?= h($user->username) ?></h3>
-    <table class="table table-striped table-hover">
+    <table border="1" style="width:100%; padding: 5px">
         <tr>
-            <th>Nome:</th>
+            <th><b>Nome:</b></th>
             <td><?= h($user->username) ?></td>
         </tr>
         <tr>
-            <th>E-Mail:</th>
+            <th><b>E-Mail:</b></th>
             <td><?= h($user->email) ?></td>
         </tr>
         <tr>
-            <th>Perfil:</th>
+            <th><b>Perfil:</b></th>
             <td><?= h($user->role) ?></td>
         </tr>
     </table>
-    <div class="related table-responsive">
         <h4><?= __('{0}', ['Movimentacoes relacionados ']) ?></h4>
         <?php if (!empty($user->movimentacoes)): ?>
-        <table class="table table-striped table-hover">
-            <tr>
-                <th>Ticket</th>
-                <th>Valor</th>
-                <th>Observação</th>
+        <table border="1" style="width:100%; padding: 5px;">
+            <tr style="background-color: #116d76">
+                <th><b>Ticket</b></th>
+                <th><b>Valor</b></th>
+                <th><b>Observação</b></th>
             </tr>
             <?php foreach ($user->movimentacoes as $movimentacoes): ?>
             <tr>
@@ -33,5 +32,3 @@
         </table>
     <?php endif; ?>
     </div>
-</div>
-<br>
