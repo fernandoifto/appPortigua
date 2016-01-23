@@ -6,6 +6,7 @@
         <?= $this->Html->link(__(' Editar'), ['action' => 'edit', $movimentaco->id], ['class' => 'list-group-item glyphicon glyphicon-edit', 'title' => 'Editar']) ?>
         <?= $this->Form->postLink(__(' Deletar'), ['action' => 'delete', $movimentaco->id], ['confirm' => __('Tem certeza que deseja deletar?'),
                                     'class' => 'list-group-item glyphicon glyphicon-trash', 'title' => 'Deletar']) ?>
+        <li><?= $this->Html->link(__(' PDF'), ['action' => 'view', $movimentaco->id, '_ext' => 'pdf'], ['class' => 'list-group-item glyphicon glyphicon-print', 'title' => 'Exportar para pdf']); ?> </li>
 
 
     </ul>
@@ -15,7 +16,7 @@
     <table class="table table-striped table-hover">
         <tr>
             <th>Ticket:</th>
-            <td><?= $this->Number->format($movimentaco->ticket) ?></td>
+            <td><?= $movimentaco->ticket ?></td>
         </tr>
         <tr>
             <th>Valor:</th>

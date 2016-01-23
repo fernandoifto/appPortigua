@@ -7,22 +7,30 @@
 </nav>
 <div class="tipos index col-md-10 columns content table-responsive">
     <div class="panel panel-info">
-        <div class="panel-heading">Lista de Tipos de Movimentação</div>
-        <div class="panel-body">
-            <?php
+        <div class="panel-heading">
+            <?php 
+                    
                 echo $this->Form->create(null, ['type' => 'get', 'class' => 'form-inline']);
-                    echo '<label class="radio-inline">
-                                <input type="radio" checked="true" name="optionSearch" id="opcaoBuscaDescricao" value="Tipos.descricao"> Descrição
-                          </label>
-                          <label class="radio-inline">
-                                <input type="radio" name="optionSearch" id="opcaoBuscaTipo" value="Tipos.tipo"> Tipo
-                          </label>';
+                echo '<b>Buscar por:</b>
+                      <label class="radio-inline">
+                            <input type="radio" checked="true" name="optionSearch" id="opcaoBuscaDescricao" value="Tipos.descricao"> Descrição
+                      </label>
+                            <label class="radio-inline">
+                            <input type="radio" name="optionSearch" id="opcaoBuscaTipo" value="Tipos.tipo"> Tipo
+                      </label>
+
+                    </div>
+                    <div class="panel-body">';
                 
-                echo ' <div class="pull-right">';
-                    echo $this->Form->input('search', ['class' => 'form-control input-sm','size' => '30', 'label' => false,
-                         'placeholder' => 'Digite aqui sua pesquisa', 'value' => $this->request->query('search')]); 
-                echo '</div>';
-                                
+                    echo ' <div class="pull-left">';
+                    echo $this->Form->input('search', ['class' => 'form-control input-sm', 'size' => '30', 'label' => false,
+                        'placeholder' => 'Digite aqui sua pesquisa', 'value' => $this->request->query('search')]);
+                    echo '</div>';
+                    echo $this->Form->button('', ['class' => 'btn btn-sm glyphicon glyphicon-search', 'title' => 'Buscar']);
+                    echo ' ';
+                    echo $this->Html->link(__(' PDF'), ['action' => 'index', '_ext' => 'pdf', '?' => ['optionSearch' => $this->request->query('optionSearch'),
+                            'search' => $this->request->query('search')]], ['class' => 'btn btn-sm btn-warning glyphicon glyphicon-print', 'title' => 'Gerar Pdf']);
+
                 echo $this->Form->end();
             ?>
         </div>
@@ -50,13 +58,11 @@
         </tbody>
     </table>
     <div class="paginator">
-        <center>
             <ul class="pagination">
                 <?= $this->Paginator->prev('&laquo; ' . __('anterior'), ['escape'=>false]) ?>
                 <?= $this->Paginator->numbers(['escape'=>false]) ?>
                 <?= $this->Paginator->next(__('proximo') . ' &raquo;', ['escape'=>false]) ?>
             </ul>
         </div>
-    </center>
 </div>
 </div>

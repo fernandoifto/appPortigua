@@ -19,11 +19,13 @@ class MovimentacoesController extends AppController
     
     public function index() {
         $search = null;
-        
         if(isset($this->request->query['search'])){
                 $search = $this->request->query['search'];
                 $optionSearch = $this->request->query['optionSearch'];
-                
+                                
+                if($optionSearch == 'Movimentacoes.created'){
+                    $search = implode("-",array_reverse(explode("/",$search)));
+                }
                 $movimentacoes = $this->Movimentacoes->find('all')->contain(['Tipos', 'Users'])
                         ->innerJoin('users', 'users.id = Movimentacoes.users_id')
                         ->innerJoin('tipos', 'tipos.id = Movimentacoes.tipos_id')
@@ -33,7 +35,27 @@ class MovimentacoesController extends AppController
                 ->innerJoin('users', 'users.id = Movimentacoes.users_id')
                 ->innerJoin('tipos', 'tipos.id = Movimentacoes.tipos_id');
         }
+        $this->pdfConfig = [
+            'orientation' => 'portrait',
+            'filename' => 'movimentacoes.pdf'
+        ];
+        $this->set('movimentacoes', $this->paginate($movimentacoes));
+        $this->set('_serialize', ['movimentacoes']);
+    }
+    
+    public function report_lancamentos_diarios() {
         
+        $dataAtual = implode("-",array_reverse(explode("/",date('d/m/Y'))));
+
+        $movimentacoes = $this->Movimentacoes->find('all')->contain(['Tipos', 'Users'])
+                ->innerJoin('users', 'users.id = Movimentacoes.users_id')
+                ->innerJoin('tipos', 'tipos.id = Movimentacoes.tipos_id')
+                ->where(['CAST(Movimentacoes.created AS CHAR ) LIKE ' => '%' . $dataAtual . '%']);
+
+        $this->pdfConfig = [
+            'orientation' => 'portrait',
+            'filename' => 'report_lancamentos_diarios.pdf'
+        ];
         $this->set('movimentacoes', $this->paginate($movimentacoes));
         $this->set('_serialize', ['movimentacoes']);
     }
@@ -50,6 +72,10 @@ class MovimentacoesController extends AppController
         $movimentaco = $this->Movimentacoes->get($id, [
             'contain' => ['Tipos', 'Users']
         ]);
+        $this->pdfConfig = [
+            'orientation' => 'portrait',
+            'filename' => 'Movimentacao_' . $id . '.pdf'
+        ];
         $this->set('movimentaco', $movimentaco);
         $this->set('_serialize', ['movimentaco']);
     }

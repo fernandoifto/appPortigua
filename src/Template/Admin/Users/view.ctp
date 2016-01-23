@@ -6,7 +6,7 @@
         <?= $this->Html->link(__(' Editar'), ['action' => 'edit', $user->id], ['class' => 'list-group-item glyphicon glyphicon-edit', 'title' => 'Editar']) ?>
         <?= $this->Form->postLink(__(' Deletar'), ['action' => 'delete', $user->id], ['confirm' => __('Tem certeza que deseja deletar # {0}?', $user->id),
                                     'class' => 'list-group-item glyphicon glyphicon-trash', 'title' => 'Deletar']) ?>
-        <li><?= $this->Html->link(__(' PDF'), ['action' => 'view', $user->id, '_ext' => 'pdf'], ['class' => 'list-group-item glyphicon glyphicon-print', 'title' => 'Gerar Pdf']); ?> </li>
+        <li><?= $this->Html->link(__(' PDF'), ['action' => 'view', $user->id, '_ext' => 'pdf'], ['class' => 'list-group-item glyphicon glyphicon-print', 'title' => 'Exportar para pdf']); ?> </li>
 
     </ul>
 </nav>

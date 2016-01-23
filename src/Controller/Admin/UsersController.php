@@ -30,6 +30,10 @@ class UsersController extends AppController
                 ]]
             ];
         }
+        $this->pdfConfig = [
+            'orientation' => 'portrait',
+            'filename' => 'users.pdf'
+        ];
         
         $this->set('users', $this->paginate($this->Users));
         $this->set('_serialize', ['users']);

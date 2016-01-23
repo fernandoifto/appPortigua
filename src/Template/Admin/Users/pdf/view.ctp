@@ -17,7 +17,7 @@
         <h4><?= __('{0}', ['Movimentacoes relacionados ']) ?></h4>
         <?php if (!empty($user->movimentacoes)): ?>
         <table border="1" style="width:100%; padding: 5px;">
-            <tr style="background-color: #116d76">
+            <tr style="background-color: #3A87AD">
                 <th><b>Ticket</b></th>
                 <th><b>Valor</b></th>
                 <th><b>Observação</b></th>

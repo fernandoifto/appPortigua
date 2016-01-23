@@ -7,27 +7,42 @@
 </nav>
 <div class="movimentacoes index col-md-10 columns content table-responsive">
     <div class="panel panel-info">
-        <div class="panel-heading">Lista de Movimentações</div>
-        <div class="panel-body">
-            <?php
+        <div class="panel-heading">
+            <?php 
+                    
                 echo $this->Form->create(null, ['type' => 'get', 'class' => 'form-inline']);
-                echo '  <label class="radio-inline">
-                            <input type="radio" checked="true" name="optionSearch" id="opcaoBuscaNome" value="Movimentacoes.ticket"> Ticket	
+                echo '<b>Buscar por:</b>
+                        <label class="radio-inline">
+                            <input type="radio" checked="true" name="optionSearch" value="Movimentacoes.ticket"> Ticket	
                         </label>
                         <label class="radio-inline">
-                            <input type="radio" name="optionSearch" id="opcaoBuscaEmail" value="Movimentacoes.valor"> Valor
+                            <input type="radio" name="optionSearch" value="Movimentacoes.valor"> Valor
                         </label>
                         <label class="radio-inline">
-                            <input type="radio" name="optionSearch" id="opcaoBuscaEmail" value="tipos.descricao"> Tipo
+                            <input type="radio" name="optionSearch" value="tipos.descricao"> Tipo
                         </label>
                         <label class="radio-inline">
-                            <input type="radio" name="optionSearch" id="opcaoBuscaEmail" value="users.username"> Usuário
-                        </label>';
+                            <input type="radio" name="optionSearch" value="users.username"> Usuário
+                        </label>
+                         <label class="radio-inline">
+                            <input type="radio" name="optionSearch"value="Movimentacoes.created"> Lançamento
+                        </label>
 
-                echo ' <div class="pull-right">';
-                    echo $this->Form->input('search', ['class' => 'form-control input-sm','size' => '30', 'label' => false,
-                          'placeholder' => 'Digite aqui sua pesquisa', 'value' => $this->request->query('search')]); 
-                    echo '</div>';
+                    </div>
+                    <div class="panel-body">';
+
+
+                echo ' <div class="pull-left">';
+                echo $this->Form->input('search', ['class' => 'form-control input-sm', 'size' => '30', 'label' => false,
+                    'placeholder' => 'Digite aqui sua pesquisa', 'value' => $this->request->query('search')]);
+                echo '</div>';
+                echo $this->Form->button('', ['class' => 'btn btn-sm glyphicon glyphicon-search', 'title' => 'Buscar']);
+                echo ' ';
+                echo $this->Html->link(__(' PDF'), ['action' => 'index', '_ext' => 'pdf', '?' => ['optionSearch' => $this->request->query('optionSearch'),
+                        'search' => $this->request->query('search')]], ['class' => 'btn btn-sm btn-default glyphicon glyphicon-print', 'title' => 'Gerar Pdf']);
+                echo ' ';
+                echo $this->Html->link(__(' Lançamentos'), ['action' => 'report_lancamentos_diarios', '_ext' => 'pdf'], 
+                            ['class' => 'btn btn-sm btn-warning glyphicon glyphicon-print', 'title' => 'Lançamentos do dia']);
 
                 echo $this->Form->end();
             ?>            
@@ -62,13 +77,11 @@
         </tbody>
     </table>
     <div class="paginator">
-        <center>
             <ul class="pagination">
                 <?= $this->Paginator->prev('&laquo; ' . __('anterior'), ['escape'=>false]) ?>
                 <?= $this->Paginator->numbers(['escape'=>false]) ?>
                 <?= $this->Paginator->next(__('proximo') . ' &raquo;', ['escape'=>false]) ?>
             </ul>
         </div>
-    </center>
 </div>
 </div>

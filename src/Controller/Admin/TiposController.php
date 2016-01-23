@@ -29,6 +29,10 @@ class TiposController extends AppController
                 ]]
             ];
         }
+        $this->pdfConfig = [
+            'orientation' => 'portrait',
+            'filename' => 'tipos.pdf'
+        ];
         $this->set('tipos', $this->paginate($this->Tipos));
         $this->set('_serialize', ['tipos']);
     }
@@ -46,6 +50,10 @@ class TiposController extends AppController
         $tipo = $this->Tipos->get($id, [
             'contain' => ['Movimentacoes']
         ]);
+        $this->pdfConfig = [
+            'orientation' => 'portrait',
+            'filename' => 'Tipo_' . $id . '.pdf'
+        ];
         $this->set('tipo', $tipo);
         $this->set('_serialize', ['tipo']);
     }
